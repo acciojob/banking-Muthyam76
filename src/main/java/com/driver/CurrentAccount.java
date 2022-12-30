@@ -16,14 +16,40 @@ public class CurrentAccount extends BankAccount{
         // If the license Id is valid, do nothing
         // If the characters of the license Id can be rearranged to create any valid license Id
         // If it is not possible, throw "Valid License can not be generated" Exception
-        boolean flag=false;
-        for(int i=0;i<tradeLicenseId.length()-1;i++){
-            if(tradeLicenseId.charAt(i)==tradeLicenseId.charAt(i+1)){
-                flag=true;
+        if(!permute(getTradeLicenseId(),0,tradeLicenseId.length()-1));
+        throw new Exception("Valid License can not be generated");
 
+
+    }
+    private boolean permute(String str, int l, int r)
+    {
+        if (l == r) {
+            boolean flag=false;
+            for(int i=0;i<str.length()-1;i++){
+                if(str.charAt(i)==str.charAt(i+1)){
+                    return true;
+
+                }
+            }
+           // System.out.println(str);
+        }
+        else {
+            for (int i = l; i <= r; i++) {
+                str = swap(str, l, i);
+                permute(str, l + 1, r);
+                str = swap(str, l, i);
             }
         }
-
+        return false;
+    }
+    public String swap(String a, int i, int j)
+    {
+        char temp;
+        char[] charArray = a.toCharArray();
+        temp = charArray[i];
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
     }
 
     public String getTradeLicenseId() {
