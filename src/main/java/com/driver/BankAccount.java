@@ -17,7 +17,7 @@ public class BankAccount {
         //Each digit of an account number can lie between 0 and 9 (both inclusive)
         //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
         //If it is not possible, throw "Account Number can not be generated" exception
-    /*    double max = 1 * Math.pow(10, digits);
+       double max = 1 * Math.pow(10, digits);
         double min = 1 * Math.pow(10, digits - 1);
        // System.out.println(min);
         //System.out.println(max);
@@ -42,7 +42,7 @@ public class BankAccount {
         }
 
             if (flag == false)
-                throw new Exception("Account Number can not be generated");*/
+                throw new Exception("Account Number can not be generated");
 
 
 
