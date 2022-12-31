@@ -40,8 +40,13 @@ public class BankAccount {
 
             }
         }
-        if (flag == false)
-            throw new Exception("Account Number can not be generated");
+        try {
+            if (flag == false)
+                throw new Exception("Account Number can not be generated");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
 
         return null;
     }
