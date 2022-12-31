@@ -1,5 +1,8 @@
 package com.driver;
 
+import javax.swing.*;
+import java.util.ArrayList;
+
 public class CurrentAccount extends BankAccount{
     String tradeLicenseId; //consists of Uppercase English characters only
 
@@ -17,33 +20,50 @@ public class CurrentAccount extends BankAccount{
         // If the license Id is valid, do nothing
         // If the characters of the license Id can be rearranged to create any valid license Id
         // If it is not possible, throw "Valid License can not be generated" Exception
-        if(!permute(getTradeLicenseId(),0,tradeLicenseId.length()-1));
+        ArrayList<String>ans=new ArrayList<>();
+      /*  if(!permute(getTradeLicenseId(),0,tradeLicenseId.length()-1,ans))
         throw new Exception("Valid License can not be generated");
+        else{
+            System.out.println(ans);
+        }*/
+        permute(getTradeLicenseId(),0,tradeLicenseId.length()-1,ans);
+       // System.out.println(ans);
+        boolean flag=false;
+        boolean check=false;
+        for(String str :ans) {
+            flag=false;
+            for (int i = 0; i < str.length() - 1; i++) {
+                if (str.charAt(i) == str.charAt(i + 1)) {
+                    flag=true;
+                }
+            }
+            if(flag==false)
+                check=true;
+
+        }
+        if(check==false)
+            throw new Exception("Valid License can not be generated");
+
+
 
 
     }
-    private boolean permute(String str, int l, int r)
+    private void permute(String str, int l, int r,ArrayList<String>ans)
     {
         if (l == r) {
-            boolean flag=false;
-            for(int i=0;i<str.length()-1;i++){
-                if(str.charAt(i)==str.charAt(i+1)){
-                    return true;
 
-                }
-            }
-            System.out.println(str);
+            ans.add(str);
+           // System.out.println(str);
+
         }
         else {
             for (int i = l; i <= r; i++) {
                 str = swap(str, l, i);
-                permute(str, l + 1, r);
-
-
+                permute(str, l + 1, r,ans);
                 str = swap(str, l, i);
             }
         }
-        return false;
+
     }
     public String swap(String a, int i, int j)
     {
