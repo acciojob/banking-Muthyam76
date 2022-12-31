@@ -32,12 +32,14 @@ public class CurrentAccount extends BankAccount{
 
                 }
             }
-           // System.out.println(str);
+            System.out.println(str);
         }
         else {
             for (int i = l; i <= r; i++) {
                 str = swap(str, l, i);
                 permute(str, l + 1, r);
+
+
                 str = swap(str, l, i);
             }
         }
