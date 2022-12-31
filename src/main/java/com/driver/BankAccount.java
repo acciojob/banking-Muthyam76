@@ -19,20 +19,25 @@ public class BankAccount {
         //If it is not possible, throw "Account Number can not be generated" exception
         double max = 1 * Math.pow(10, digits);
         double min = 1 * Math.pow(10, digits - 1);
+       // System.out.println(min);
+        //System.out.println(max);
         boolean flag = false;
 
-        for (double i = min; i < max; i++) {
-            double quote = i;
-            double total = 0;
-            while (i > 0) {
-                double rem = i % 10;
+        for (int i = (int)min; i < (int)max; i++) {
+            int quote = i;
+            int total = 0;
+            while (quote > 0) {
+                int rem = quote % 10;
                 quote = quote / 10;
                 total = total + rem;
             }
+            //System.out.println(total);
 
             if (total == sum) {
                 flag = true;
+                System.out.println(i);
                 return (int)i + "";
+
             }
         }
         if (flag == false)
